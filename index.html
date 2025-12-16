@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Egypt Heritage | معالم صنعت التاريخ</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+--gold:#c9a44c;
+--sand:#f5f1e6;
+--blue:#0b4f6c;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+font-family:'Cairo',sans-serif;
+background:var(--sand);
+color:#333;
+line-height:1.8;
+}
+
+/* Hero */
+.hero{
+height:100vh;
+background:
+linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),
+url("images/pyramids.jpg");
+background-size:cover;
+background-position:center;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+color:#fff;
+padding:20px;
+}
+
+.hero h1{
+font-size:48px;
+margin-bottom:20px;
+}
+
+.hero p{
+max-width:700px;
+margin:auto;
+font-size:18px;
+}
+
+.hero button{
+margin-top:30px;
+padding:14px 32px;
+border:none;
+background:var(--gold);
+font-size:16px;
+cursor:pointer;
+transition:.3s;
+}
+
+.hero button:hover{
+transform:scale(1.05);
+}
+
+
+section{
+padding:80px 20px;
+max-width:1200px;
+margin:auto;
+}
+
+.section-title{
+text-align:center;
+margin-bottom:40px;
+}
+
+.section-title h2{
+color:var(--blue);
+font-size:34px;
+margin-bottom:10px;
+}
+
+/* Cards */
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:30px;
+}
+
+.card{
+background:#fff;
+border-radius:14px;
+overflow:hidden;
+box-shadow:0 8px 20px rgba(0,0,0,.15);
+transition:.4s;
+}
+
+.card:hover{
+transform:translateY(-10px);
+}
+
+.card img{
+width:100%;
+height:200px;
+object-fit:cover;
+}
+
+.card-content{
+padding:20px;
+}
+
+.card-content h3{
+color:var(--blue);
+margin-bottom:10px;
+}
+
+.card-content p{
+font-size:14px;
+margin-bottom:10px;
+}
+
+.fact{
+background:var(--sand);
+padding:10px;
+border-left:4px solid var(--gold);
+font-size:13px;
+margin-bottom:15px;
+}
+
+.card-content button{
+background:var(--blue);
+color:#fff;
+border:none;
+padding:8px 18px;
+cursor:pointer;
+}
+
+/* Timeline */
+.timeline{
+border-left:4px solid var(--gold);
+padding-left:30px;
+}
+
+.time-item{
+margin-bottom:35px;
+}
+
+.time-item h4{
+color:var(--blue);
+}
+
+/* Footer */
+footer{
+background:var(--blue);
+color:#fff;
+text-align:center;
+padding:25px;
+font-size:14px;
+}
+
+/* Scroll animation */
+.reveal{
+opacity:0;
+transform:translateY(40px);
+transition:1s;
+}
+
+.reveal.active{
+opacity:1;
+transform:none;
+}
+
+/* Popup */
+#popup{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.7);
+display:flex;
+align-items:center;
+justify-content:center;
+z-index:999;
+display:none;
+}
+
+.popup-box{
+background:#fff;
+padding:30px;
+max-width:600px;
+border-radius:12px;
+position:relative;
+animation:pop .4s;
+}
+
+.popup-box span{
+position:absolute;
+top:10px;
+right:15px;
+font-size:22px;
+cursor:pointer;
+}
+
+@keyframes pop{
+from{transform:scale(.8);opacity:0}
+to{transform:scale(1);opacity:1}
+}
+</style>
+</head>
+
+<body>
+
+
+<div class="hero">
+<div>
+<h1>مصر… حضارة لا تموت</h1>
+<p>
+رحلة بصرية ومعرفية داخل أعظم حضارة عرفها التاريخ،
+نستعرض فيها معالم صنعت التاريخ عبر العصور.
+</p>
+<button onclick="document.getElementById('icons').scrollIntoView({behavior:'smooth'})">
+ابدأ الرحلة عبر الزمن
+</button>
+</div>
+</div>
+
+
+<section id="icons">
+<div class="section-title">
+<h2>معالم صنعت التاريخ</h2>
+<p>محطات خالدة شكّلت هوية الحضارة المصرية عبر العصور</p>
+</div>
+
+
+<div style="text-align:center;margin-bottom:40px;">
+<button onclick="randomFact()" style="
+background:#0b4f6c;
+color:#fff;
+border:none;
+padding:12px 26px;
+font-size:15px;
+cursor:pointer;">
+هل تعلم؟
+</button>
+</div>
+
+<div class="grid">
+
+
+<div class="card reveal">
+<img src="images/pyramids.jpg">
+<div class="card-content">
+<h3>أهرامات الجيزة</h3>
+<p>
+أعظم إنجاز معماري في العالم القديم، بُنيت كمقابر ملكية
+تعكس إيمان المصري القديم بالخلود والحياة بعد الموت.
+</p>
+<div class="fact">هل تعلم؟ ظل ارتفاع الهرم الأكبر الأعلى في العالم لأكثر من 3800 سنة.</div>
+<button onclick="openPopup('أهرامات الجيزة','أهرامات الجيزة ليست مجرد مقابر ملكية، بل مشروع حضاري متكامل يعكس قوة الدولة المصرية القديمة وقدرتها على التنظيم والهندسة. تم اختيار الموقع بعناية لارتباطه بمعتقدات الشمس والخلود، وما زالت الأهرامات حتى اليوم رمزًا عالميًا لعبقرية الإنسان.')">اعرف أكثر</button>
+</div>
+</div>
+
+
+<div class="card reveal">
+<img src="images/sphinx.jpg">
+<div class="card-content">
+<h3>أبو الهول</h3>
+<p>
+تمثال أسطوري بجسد أسد ورأس إنسان،
+يرمز للقوة والحكمة وحماية المقدسات.
+</p>
+<div class="fact">هل تعلم؟ لا توجد نصوص مؤكدة تشرح سبب كسر أنف أبو الهول.</div>
+<button onclick="openPopup('أبو الهول','أبو الهول تمثال ضخم يجمع بين جسد الأسد ورأس الإنسان، يرمز للقوة والحكمة، ويعتبر حارس الأهرامات منذ آلاف السنين.')">اعرف أكثر</button>
+</div>
+</div>
+
+
+<div class="card reveal">
+<img src="images/step-pyramid.jpg">
+<div class="card-content">
+<h3>هرم زوسر المدرج</h3>
+<p>
+أول بناء حجري ضخم في التاريخ،
+وهو البداية الحقيقية لفكرة الأهرامات.
+</p>
+<div class="fact">هل تعلم؟ صممه المهندس العبقري إيمحتب.</div>
+<button onclick="openPopup('هرم زوسر المدرج','هرم زوسر المدرج أول بناء حجري ضخم في العالم، ويعتبر نقطة الانطلاق للأهرامات اللاحقة، صممه المهندس إيمحتب.')">اعرف أكثر</button>
+</div>
+</div>
+
+
+<div class="card reveal">
+<img src="images/karnak.jpg">
+<div class="card-content">
+<h3>معبد الكرنك</h3>
+<p>
+أكبر مجمع ديني في العالم القديم،
+بناه ملوك عدة عبر قرون طويلة.
+</p>
+<div class="fact">هل تعلم؟ قاعة الأعمدة تضم 134 عمودًا عملاقًا.</div>
+<button onclick="openPopup('معبد الكرنك','معبد الكرنك أكبر مجمع ديني في العالم القديم، بُني على مدى قرون بواسطة ملوك مختلفين، ويعكس تطور العمارة والدين في مصر.')">اعرف أكثر</button>
+</div>
+</div>
+
+
+<div class="card reveal">
+<img src="images/abu-simbel.jpg">
+<div class="card-content">
+<h3>معبد أبو سمبل</h3>
+<p>
+معبد صخري مذهل شيده رمسيس الثاني،
+ويمثل ذروة الفن المعماري الفرعوني.
+</p>
+<div class="fact">هل تعلم؟ تم نقل المعبد بالكامل لإنقاذه من الغرق بعد بناء السد العالي.</div>
+<button onclick="openPopup('معبد أبو سمبل','معبد أبو سمبل شيده رمسيس الثاني، وهو مثال رائع على فن النحت والهندسة الفرعونية. تم نقله بالكامل لحماية من الفيضان.')">اعرف أكثر</button>
+</div>
+</div>
+
+
+<div class="card reveal">
+<img src="images/valley-kings.jpg">
+<div class="card-content">
+<h3>وادي الملوك</h3>
+<p>
+مدافن سرية لملوك الدولة الحديثة،
+حُفرت داخل الجبال لحمايتها.
+</p>
+<div class="fact">هل تعلم؟ مقبرة توت عنخ آمون اكتُشفت شبه كاملة.</div>
+<button onclick="openPopup('وادي الملوك','وادي الملوك يضم مقابر ملوك الدولة الحديثة، حُفرت في الجبال لحمايتها ويعتبر تحفة فنية لمعمار المقابر المصرية.')">اعرف أكثر</button>
+</div>
+</div>
+
+
+<div class="card reveal">
+<img src="images/hatshepsut.jpg">
+<div class="card-content">
+<h3>معبد حتشبسوت</h3>
+<p>
+تحفة معمارية فريدة تجسد قوة المرأة
+ودورها في الحكم بمصر القديمة.
+</p>
+<div class="fact">هل تعلم؟ حتشبسوت حكمت مصر بسلام وازدهار.</div>
+<button onclick="openPopup('معبد حتشبسوت','معبد حتشبسوت مثال معماري فريد يظهر دور المرأة في الحكم ويعكس القوة والسياسة في مصر القديمة.')">اعرف أكثر</button>
+</div>
+</div>
+
+
+<div class="card reveal">
+<img src="images/gem.jpg">
+<div class="card-content">
+<h3>المتحف المصري الكبير</h3>
+<p>
+أكبر متحف في العالم مخصص لحضارة واحدة،
+يعرض التراث المصري بأسلوب عصري.
+</p>
+<div class="fact">هل تعلم؟ يضم المجموعة الكاملة لتوت عنخ آمون.</div>
+<button onclick="openPopup('المتحف المصري الكبير','المتحف المصري الكبير يعرض آثار مصر بالكامل بأسلوب عصري، ويحتوي على كل مقتنيات الملك توت عنخ آمون.')">اعرف أكثر</button>
+</div>
+</div>
+
+<div class="card reveal">
+<img src="images/al-muizz.jpg">
+<div class="card-content">
+<h3>شارع المعز</h3>
+<p>
+متحف مفتوح للعمارة الإسلامية،
+يجسد عظمة القاهرة التاريخية.
+</p>
+<div class="fact">هل تعلم؟ يُعد أكبر تجمع للآثار الإسلامية في العالم.</div>
+<button onclick="openPopup('شارع المعز','شارع المعز يمثل العمارة الإسلامية الفريدة في القاهرة ويحتوي على أكبر تجمع للآثار الإسلامية.')">اعرف أكثر</button>
+</div>
+</div>
+
+</div>
+</section>
+
+
+<section>
+<div class="section-title">
+<h2>الخط الزمني للحضارة المصرية</h2>
+</div>
+
+<div class="timeline reveal">
+<div class="time-item">
+<h4>العصر الفرعوني</h4>
+<p>بناء الأهرامات والمعابد وظهور أعظم فنون العمارة.</p>
+</div>
+
+<div class="time-item">
+<h4>العصر اليوناني الروماني</h4>
+<p>تفاعل حضاري وثقافي كبير خاصة في الإسكندرية.</p>
+</div>
+
+<div class="time-item">
+<h4>العصر الإسلامي</h4>
+<p>ازدهار العمارة الدينية وبناء القاهرة التاريخية.</p>
+</div>
+
+<div class="time-item">
+<h4>العصر الحديث</h4>
+<p>مشروعات قومية وثقافية تربط الماضي بالمستقبل.</p>
+</div>
+</div>
+</section>
+
+<!-- Popup -->
+<div id="popup">
+<div class="popup-box">
+<span onclick="closePopup()">×</span>
+<h3 id="popupTitle"></h3>
+<p id="popupText"></p>
+</div>
+</div>
+
+<footer>
+Egypt Heritage Web – Mina Ayman
+</footer>
+
+<script>
+// Reveal on scroll
+const reveals=document.querySelectorAll('.reveal');
+window.addEventListener('scroll',()=>{
+reveals.forEach(el=>{
+const top=el.getBoundingClientRect().top;
+if(top<window.innerHeight-100){
+el.classList.add('active');
+}
+});
+});
+
+// Popup functions
+function openPopup(title,text){
+document.getElementById("popupTitle").innerText=title;
+document.getElementById("popupText").innerText=text;
+document.getElementById("popup").style.display="flex";
+}
+
+function closePopup(){
+document.getElementById("popup").style.display="none";
+}
+
+// هل تعلم؟ - random fact
+const facts=[
+"الحضارة المصرية عمرها أكتر من 7000 سنة.",
+"المصري القديم أول من استخدم التقويم الشمسي.",
+"الأهرامات لم تُبنَ بواسطة عبيد بل عمال محترفين.",
+"الطب المصري القديم كان متقدمًا جدًا في الجراحة.",
+"المرأة في مصر القديمة كان لها حقوق غير مسبوقة.",
+"الهيروغليفية كانت لغة مقدسة وليست للكتابة اليومية فقط.",
+"النيل كان يُعتبر إلهًا مانحًا للحياة.",
+"التحنيط لم يكن للجسد فقط بل استعداد للحياة الأخرى.",
+"بعض المعابد صُممت فلكيًا لتتعامد معها الشمس."
+];
+
+function randomFact(){
+const item=facts[Math.floor(Math.random()*facts.length)];
+openPopup("هل تعلم؟",item);
+}
+</script>
+
+</body>
+</html>
